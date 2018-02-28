@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rararar" translatesAutoresizingMaskIntoConstraints="NO" id="G3p-Qi-2Bf" userLabel="center">
+                                <rect key="frame" x="131.5" y="321.5" width="112.5" height="113"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Disabled" translatesAutoresizingMaskIntoConstraints="NO" id="V2P-Pt-km9" userLabel="topright">
+                                <rect key="frame" x="188" y="224" width="112" height="109"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Disabled" translatesAutoresizingMaskIntoConstraints="NO" id="EgB-Wy-Y0Q" userLabel="topleft">
+                                <rect key="frame" x="76.5" y="224" width="112" height="109"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Disabled" translatesAutoresizingMaskIntoConstraints="NO" id="k8J-Km-MBw" userLabel="left">
+                                <rect key="frame" x="20.5" y="323" width="112" height="109"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Disabled" translatesAutoresizingMaskIntoConstraints="NO" id="N4O-cf-kjs" userLabel="botleft">
+                                <rect key="frame" x="76.5" y="423" width="112" height="109"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Disabled" translatesAutoresizingMaskIntoConstraints="NO" id="5ln-14-fgz" userLabel="right">
+                                <rect key="frame" x="244" y="323" width="112" height="109"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Disabled" translatesAutoresizingMaskIntoConstraints="NO" id="Z72-UY-L80" userLabel="botright">
+                                <rect key="frame" x="188" y="423" width="112" height="109"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="5ln-14-fgz" firstAttribute="width" secondItem="G3p-Qi-2Bf" secondAttribute="width" id="5Gg-Lv-bLr"/>
+                            <constraint firstItem="5ln-14-fgz" firstAttribute="leading" secondItem="G3p-Qi-2Bf" secondAttribute="trailing" id="AMg-8J-pZu"/>
+                            <constraint firstItem="V2P-Pt-km9" firstAttribute="leading" secondItem="G3p-Qi-2Bf" secondAttribute="trailing" constant="-56" id="Dnf-pY-2Aw"/>
+                            <constraint firstItem="N4O-cf-kjs" firstAttribute="top" secondItem="G3p-Qi-2Bf" secondAttribute="bottom" constant="-11.5" id="EhN-Im-hvM"/>
+                            <constraint firstItem="G3p-Qi-2Bf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Eo6-c4-3sL"/>
+                            <constraint firstItem="G3p-Qi-2Bf" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1.1" id="GWj-Wa-VNo"/>
+                            <constraint firstItem="Z72-UY-L80" firstAttribute="leading" secondItem="G3p-Qi-2Bf" secondAttribute="trailing" constant="-56" id="Hme-Jf-47Y"/>
+                            <constraint firstItem="k8J-Km-MBw" firstAttribute="width" secondItem="G3p-Qi-2Bf" secondAttribute="width" id="IqC-6f-inY"/>
+                            <constraint firstItem="5ln-14-fgz" firstAttribute="centerY" secondItem="G3p-Qi-2Bf" secondAttribute="centerY" id="LM2-v0-FdP"/>
+                            <constraint firstItem="Z72-UY-L80" firstAttribute="width" secondItem="G3p-Qi-2Bf" secondAttribute="width" id="Nc7-k1-otS"/>
+                            <constraint firstItem="V2P-Pt-km9" firstAttribute="width" secondItem="G3p-Qi-2Bf" secondAttribute="width" id="NeH-6b-ZyO"/>
+                            <constraint firstItem="G3p-Qi-2Bf" firstAttribute="leading" secondItem="k8J-Km-MBw" secondAttribute="trailing" constant="-1" id="cs6-WY-b0e"/>
+                            <constraint firstItem="k8J-Km-MBw" firstAttribute="centerY" secondItem="G3p-Qi-2Bf" secondAttribute="centerY" id="fG6-Qd-cy4"/>
+                            <constraint firstItem="G3p-Qi-2Bf" firstAttribute="top" secondItem="EgB-Wy-Y0Q" secondAttribute="bottom" constant="-11.5" id="gJC-mR-AFf"/>
+                            <constraint firstItem="EgB-Wy-Y0Q" firstAttribute="width" secondItem="G3p-Qi-2Bf" secondAttribute="width" id="toc-kI-d8H"/>
+                            <constraint firstItem="Z72-UY-L80" firstAttribute="top" secondItem="G3p-Qi-2Bf" secondAttribute="bottom" constant="-11.5" id="u1U-Le-scI"/>
+                            <constraint firstItem="G3p-Qi-2Bf" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.301" id="u4m-Th-dtZ"/>
+                            <constraint firstItem="G3p-Qi-2Bf" firstAttribute="top" secondItem="V2P-Pt-km9" secondAttribute="bottom" constant="-11.5" id="uI8-AH-Jxs"/>
+                            <constraint firstItem="N4O-cf-kjs" firstAttribute="width" secondItem="G3p-Qi-2Bf" secondAttribute="width" id="w2U-GT-b8R"/>
+                            <constraint firstItem="G3p-Qi-2Bf" firstAttribute="leading" secondItem="N4O-cf-kjs" secondAttribute="trailing" constant="-57" id="wCn-gs-ryd"/>
+                            <constraint firstItem="G3p-Qi-2Bf" firstAttribute="leading" secondItem="EgB-Wy-Y0Q" secondAttribute="trailing" constant="-57" id="xvU-G5-T30"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Disabled" width="95" height="109"/>
+        <image name="Rararar" width="97" height="113"/>
+    </resources>
+</document>
