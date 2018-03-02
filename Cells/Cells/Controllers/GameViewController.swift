@@ -62,7 +62,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     }
 
     @objc func pauseGame(_ sender: Any?) {
-        self.gameScene.pauseGame()
+        if gameScene.gameState.isKind(of: PlayingState.self) {
+            self.gameScene.gameState = PausedState(gameScene: self.gameScene)
+        }
     }
     
     // MARK: - AUTHENTICATE LOCAL PLAYER FOR GAMECENTER

@@ -15,6 +15,7 @@
 		FE45D09620239912005FBF8C /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FE45D09520239912005FBF8C /* GameOverScene.sks */; };
 		FE45D0982023A0AC005FBF8C /* GameOverNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE45D0972023A0AC005FBF8C /* GameOverNode.swift */; };
 		FE45D09B20243B7E005FBF8C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE45D09A20243B7E005FBF8C /* GameKit.framework */; };
+		FE54B6F420474F8800AB55C6 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE54B6F320474F8800AB55C6 /* GameStates.swift */; };
 		FE64C4BB201B77F10044F435 /* ShaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE64C4BA201B77F10044F435 /* ShaderManager.swift */; };
 		FE64C4BD201B96D50044F435 /* HexagonInstances.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE64C4BC201B96D50044F435 /* HexagonInstances.swift */; };
 		FE64C4BF201BC9430044F435 /* Pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE64C4BE201BC9430044F435 /* Pop.wav */; };
@@ -27,6 +28,11 @@
 		FE6CBF90200D1EB0006407E1 /* HexagonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6CBF8F200D1EB0006407E1 /* HexagonManager.swift */; };
 		FE6CBF92200E4E25006407E1 /* HexagonTimer.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FE6CBF91200E4E25006407E1 /* HexagonTimer.fsh */; };
 		FE81BCB82017C6C60073CC21 /* ScreenEffect.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FE81BCB72017C6C60073CC21 /* ScreenEffect.fsh */; };
+		FE8ED9D82049B67300AE60A0 /* MenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9D72049B67300AE60A0 /* MenuState.swift */; };
+		FE8ED9DD2049B6B100AE60A0 /* GameOverState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9D92049B6B100AE60A0 /* GameOverState.swift */; };
+		FE8ED9DE2049B6B100AE60A0 /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9DA2049B6B100AE60A0 /* PlayingState.swift */; };
+		FE8ED9DF2049B6B100AE60A0 /* PausedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9DB2049B6B100AE60A0 /* PausedState.swift */; };
+		FE8ED9E02049B6B100AE60A0 /* RestartState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9DC2049B6B100AE60A0 /* RestartState.swift */; };
 		FEC3965A20120B8F00A95171 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3965920120B8F00A95171 /* Extensions.swift */; };
 		FEC635CF2018EB9E00737D9E /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC635CE2018EB9E00737D9E /* MusicPlayer.swift */; };
 		FEC635D12018EC7600737D9E /* DiscoHigh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEC635D02018EC7600737D9E /* DiscoHigh.mp3 */; };
@@ -50,6 +56,7 @@
 		FE45D09520239912005FBF8C /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		FE45D0972023A0AC005FBF8C /* GameOverNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverNode.swift; sourceTree = "<group>"; };
 		FE45D09A20243B7E005FBF8C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		FE54B6F320474F8800AB55C6 /* GameStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
 		FE64C4BA201B77F10044F435 /* ShaderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderManager.swift; sourceTree = "<group>"; };
 		FE64C4BC201B96D50044F435 /* HexagonInstances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonInstances.swift; sourceTree = "<group>"; };
 		FE64C4BE201BC9430044F435 /* Pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Pop.wav; sourceTree = "<group>"; };
@@ -62,6 +69,11 @@
 		FE6CBF8F200D1EB0006407E1 /* HexagonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonManager.swift; sourceTree = "<group>"; };
 		FE6CBF91200E4E25006407E1 /* HexagonTimer.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = HexagonTimer.fsh; sourceTree = "<group>"; };
 		FE81BCB72017C6C60073CC21 /* ScreenEffect.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = ScreenEffect.fsh; sourceTree = "<group>"; };
+		FE8ED9D72049B67300AE60A0 /* MenuState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuState.swift; sourceTree = "<group>"; };
+		FE8ED9D92049B6B100AE60A0 /* GameOverState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverState.swift; sourceTree = "<group>"; };
+		FE8ED9DA2049B6B100AE60A0 /* PlayingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
+		FE8ED9DB2049B6B100AE60A0 /* PausedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PausedState.swift; sourceTree = "<group>"; };
+		FE8ED9DC2049B6B100AE60A0 /* RestartState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartState.swift; sourceTree = "<group>"; };
 		FEC3965920120B8F00A95171 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FEC635CE2018EB9E00737D9E /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		FEC635D02018EC7600737D9E /* DiscoHigh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DiscoHigh.mp3; sourceTree = "<group>"; };
@@ -104,6 +116,19 @@
 				FE45D09A20243B7E005FBF8C /* GameKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FE54B6F120474F6500AB55C6 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				FE54B6F320474F8800AB55C6 /* GameStates.swift */,
+				FE8ED9D92049B6B100AE60A0 /* GameOverState.swift */,
+				FE8ED9DB2049B6B100AE60A0 /* PausedState.swift */,
+				FE8ED9DA2049B6B100AE60A0 /* PlayingState.swift */,
+				FE8ED9DC2049B6B100AE60A0 /* RestartState.swift */,
+				FE8ED9D72049B67300AE60A0 /* MenuState.swift */,
+			);
+			path = State;
 			sourceTree = "<group>";
 		};
 		FE64C4C6201F6E0C0044F435 /* Easing */ = {
@@ -243,6 +268,7 @@
 		FEFAF17F1FFBB62600BAFA80 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				FE54B6F120474F6500AB55C6 /* State */,
 				FE7AA5A020067BFB00BF7A63 /* Classes */,
 				FE7AA59D200673B200BF7A63 /* Controllers */,
 				FE7AA59B200673A700BF7A63 /* Services */,
@@ -349,18 +375,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEFAF1871FFBB62600BAFA80 /* GameScene.swift in Sources */,
+				FE8ED9DD2049B6B100AE60A0 /* GameOverState.swift in Sources */,
 				FEFAF1891FFBB62600BAFA80 /* GameViewController.swift in Sources */,
 				FEC635CF2018EB9E00737D9E /* MusicPlayer.swift in Sources */,
 				FE6CBF8A2006A25B006407E1 /* Hexagon.swift in Sources */,
 				FE6CBF90200D1EB0006407E1 /* HexagonManager.swift in Sources */,
+				FE8ED9E02049B6B100AE60A0 /* RestartState.swift in Sources */,
 				FE64C4C4201F6DCA0044F435 /* easing.swift in Sources */,
+				FE8ED9DF2049B6B100AE60A0 /* PausedState.swift in Sources */,
 				FE64C4BB201B77F10044F435 /* ShaderManager.swift in Sources */,
 				FE45D094202388CB005FBF8C /* StatsSaver.swift in Sources */,
 				FE64C4BD201B96D50044F435 /* HexagonInstances.swift in Sources */,
+				FE54B6F420474F8800AB55C6 /* GameStates.swift in Sources */,
+				FE8ED9DE2049B6B100AE60A0 /* PlayingState.swift in Sources */,
 				FEFAF1811FFBB62600BAFA80 /* AppDelegate.swift in Sources */,
 				FE64C4C3201F6DCA0044F435 /* EasingDeclarations.swift in Sources */,
 				FE45D08C202248B2005FBF8C /* PauseGameNode.swift in Sources */,
 				FEC3965A20120B8F00A95171 /* Extensions.swift in Sources */,
+				FE8ED9D82049B67300AE60A0 /* MenuState.swift in Sources */,
 				FE64C4C5201F6DCA0044F435 /* SKEase.swift in Sources */,
 				FE45D0982023A0AC005FBF8C /* GameOverNode.swift in Sources */,
 			);

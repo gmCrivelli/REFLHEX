@@ -15,13 +15,6 @@ import CoreMotion
 // link to a pause menu, a game over screen and Game Center.
 // This is also going to be responsible for the main menu.
 
-enum GameState {
-    case menu
-    case playing
-    case paused
-    case gameOver
-}
-
 class GameScene: SKScene {
     
     /// MARK: Properties
@@ -35,6 +28,9 @@ class GameScene: SKScene {
     // View Controller delegate
     public weak var viewControllerDelegate : GameViewController!
     
+    // Game State
+    @objc public dynamic var gameState : GameState!
+    
     // Nodes
     private var root : SKNode!
     private var hexRoot : SKNode!
@@ -42,15 +38,15 @@ class GameScene: SKScene {
     private var backgroundNode : SKSpriteNode!
     private var foregroundNode : SKSpriteNode!
     private var cameraNode : SKCameraNode!
-    private var pauseGameNode : PauseGameNode!
-    private var gameOverNode : GameOverNode!
+    public var pauseGameNode : PauseGameNode!
+    public var gameOverNode : GameOverNode!
     
     private var healthCrop : SKCropNode!
     private var healthMask : SKSpriteNode!
     private var healthBar : SKSpriteNode!
     
-    private var scoreHUD : SKNode!
-    private var mainMenuHUD : SKNode!
+    public var scoreHUD : SKNode!
+    public var mainMenuHUD : SKNode!
     private var scoreLabelTop : SKLabelNode!
     private var scoreLabelBot : SKLabelNode!
     private var comboLabelTop : SKLabelNode!
@@ -70,13 +66,11 @@ class GameScene: SKScene {
     // private var cameraYOffset : CGFloat = 0
     
     // Hexagon-related
-    private var hexagonMap : SKTileMapNode!
-    private var hexagonMapTiles : [SKTileGroup]!
-    private var hexagonManager : HexagonManager = HexagonManager()
+    public var hexagonMap : SKTileMapNode!
+    public var hexagonMapTiles : [SKTileGroup]!
+    public var hexagonManager : HexagonManager = HexagonManager()
     
     // Game control variables
-    private var gameState : GameState!
-    
     private var maxConcurrentHexagons : Int!
     private var currentHexagons : Int!
     
@@ -131,6 +125,7 @@ class GameScene: SKScene {
     private let blueColorTuple : (CGFloat,CGFloat,CGFloat) = (27.0, 20.0, 74.0)
     private let redColorTuple : (CGFloat,CGFloat,CGFloat) = (128.0, 40.0, 40.0)
     private let feedbackGenerator : UINotificationFeedbackGenerator = UINotificationFeedbackGenerator()
+    private var observer : NSKeyValueObservation?
     
     /// MARK: Setups
     func setupNodes() {
@@ -316,20 +311,21 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         self.statSaverService = StatSaverService()
-        self.gameState = .menu
-        
         setupNodes()
         setupActions()
         
-        prepMenu()
-        //prepGame()
+        observer = self.observe(\.gameState, options: [.new]) { (scene, currentGameState) in
+            if let currentGameState = currentGameState.newValue {
+                currentGameState.setUpState()
+            }
+        }
         
+        self.gameState = MenuState(gameScene: self)
         feedbackGenerator.prepare()
     }
     
     func prepMenu() {
         
-        self.gameState = .menu
         self.emmiter?.removeFromParent()
         
         setupCamera()
@@ -345,6 +341,7 @@ class GameScene: SKScene {
         self.mainMenuHUD.position = CGPoint(x: 0, y: 0)
         
         self.root.isPaused = false
+        self.pauseButton!.isHidden = true
         self.pauseGameNode!.isHidden = true
         self.gameOverNode!.isHidden = true
         
@@ -357,18 +354,12 @@ class GameScene: SKScene {
         }
         
         self.mainMenuHUD.alpha = 1
-        self.pauseButton.isHidden = true
+        self.pauseGameNode!.isHidden = true
         
         self.musicPlayer.stopBackgroundMusic()
     }
     
     func prepGame() {
-    
-        if self.gameState == .menu {
-            self.mainMenuHUD.run(SKEase.move(easeFunction: .curveTypeElastic, easeType: .easeTypeOut, time: 0.9, from: CGPoint.zero, to: CGPoint(x: 0, y: 300)))
-            self.scoreHUD.run(SKEase.move(easeFunction: .curveTypeElastic, easeType: .easeTypeOut, time: 0.9, from: scoreHUD.position, to: CGPoint.zero))
-        }
-        self.gameState = .playing
         
         setupCamera()
         setupIngameVariables()
@@ -507,6 +498,13 @@ class GameScene: SKScene {
         removeHexagon(hexagon)
     }
     
+    func takeMissHit() {
+        self.health -= 5
+        self.combo = 1
+        self.difficultyScaler = difficultyScaler - 3
+        playBadHitEffects(hexagon: nil)
+    }
+    
     // Sound and screen effects for Hexagon success.
     func playGoodHitEffects(hexagon: Hexagon?) {
         
@@ -575,11 +573,9 @@ class GameScene: SKScene {
     
     //Pause the game and display the pause menu
     func pauseGame() {
-        guard self.gameState == .playing else { return }
         self.pauseGameNode!.isHidden = false
         self.pauseGameNode!.displayBox(duration: 0.1)
         self.root.isPaused = true
-        self.gameState = .paused
         self.musicPlayer.setVolume(volume: 0.2)
     }
     
@@ -587,12 +583,10 @@ class GameScene: SKScene {
     func unpauseGame() {
         self.pauseGameNode!.isHidden = true
         self.root.isPaused = false
-        self.gameState = .playing
         self.musicPlayer.setVolume(volume: 1.0)
     }
     
     func gameOver() {
-        self.gameState = .gameOver
         self.root.removeAllActions()
         self.hexRoot.removeAllChildren()
         
@@ -647,91 +641,7 @@ class GameScene: SKScene {
     
     // Detect touches and deal with them
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        switch self.gameState {
-        case .playing:
-        
-                for t in touches {
-                    let locationTop = t.location(in: self)
-                    if let node = nodes(at: locationTop)[0] as? SKNode {
-                        if node.name == "pause" {
-                            pauseGame()
-                            break
-                        }
-                    }
-                    
-                    let location = t.location(in: hexagonMap)
-                    let column = hexagonMap.tileColumnIndex(fromPosition: location)
-                    let row = hexagonMap.tileRowIndex(fromPosition: location)
-                    let tile = hexagonMap.tileDefinition(atColumn: column, row: row)
-                    if let tilename = tile?.name {
-                        
-                        if let chosenHexagon = hexagonManager.fetchHexagon(column: column, row: row) {
-                            let scaleUpAction = SKAction.scale(by: 0.5, duration: 0.3)
-                            let scaleDownAction = scaleUpAction.reversed()
-                            let sequence = SKAction.sequence([scaleUpAction, scaleDownAction])
-                            chosenHexagon.tap()
-                        }
-                        else {
-                            self.health -= 5
-                            self.combo = 1
-                            self.difficultyScaler = difficultyScaler - 3
-                            playBadHitEffects(hexagon: nil)
-                        }
-                    }
-                }
-                
-        case .paused:
-            if pauseGameNode!.menuButton.contains((touches.first?.location(in: pauseGameNode!))!) {
-                self.root.isPaused = false
-                self.pauseGameNode!.isHidden = true
-                prepMenu()
-            }
-            else if pauseGameNode!.restartButton.contains((touches.first?.location(in: pauseGameNode!))!) {
-                self.root.isPaused = false
-                self.pauseGameNode!.isHidden = true
-                prepGame()
-            }
-            else if pauseGameNode!.continueButton.contains((touches.first?.location(in: pauseGameNode!))!)
-            {
-                unpauseGame()
-            }
-        
-        case .gameOver:
-            if gameOverNode!.menuButton.contains((touches.first?.location(in: pauseGameNode!))!) {
-                prepMenu()
-            }
-            else if gameOverNode!.restartButton.contains((touches.first?.location(in: pauseGameNode!))!) {
-                self.root.isPaused = false
-                self.pauseGameNode!.isHidden = true
-                self.gameOverNode!.isHidden = true
-                prepGame()
-            }
-
-            
-            
-        case .menu:
-            for t in touches {
-                let location = t.location(in: self)
-                if let hex = nodes(at: location)[0] as? Hexagon {
-                    hex.tap()
-                }
-            }
-            
-        default:
-            break
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        gameState.processTouches(touches: touches)
     }
     
     // Updates the game elements
@@ -746,7 +656,7 @@ class GameScene: SKScene {
         let deltaTime = currentTime - lastUpdate
         lastUpdate = currentTime
         
-        if self.gameState == .playing {
+        if self.gameState.isKind(of: PlayingState.self){
             
             hexagonManager.update(timeElapsed: deltaTime)
             
@@ -757,7 +667,7 @@ class GameScene: SKScene {
             self.healthBar.colorBlendFactor = 4 * healthPercent - 1.5
             
             if self.health <= 0 {
-                gameOver()
+                self.gameState = GameOverState(gameScene: self)
             }
             
             // Camera slowly zooms out
