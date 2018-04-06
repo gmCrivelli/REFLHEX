@@ -10,15 +10,15 @@ import AVFoundation
 
 // Music player class. Controls BGM.
 class MusicPlayer {
-    
+
     private var backgroundMusicPlayer: AVAudioPlayer!
-    
+
     init() {
         loadBackgroundMusic(filename: "DiscoHigh.mp3")
     }
-    
+
     func loadBackgroundMusic(filename: String) {
-        
+
         let resourceUrl = Bundle.main.url(forResource:
             filename, withExtension: nil)
         guard let url = resourceUrl else {
@@ -36,16 +36,16 @@ class MusicPlayer {
         }
         backgroundMusicPlayer.volume = 0.7
     }
-    
+
     func playBackgroundMusic() {
         backgroundMusicPlayer.play()
     }
-    
+
     func stopBackgroundMusic() {
         backgroundMusicPlayer.stop()
     }
-    
-    func setVolume(volume : Float) {
+
+    func setVolume(volume: Float) {
         let chopped = min(1.0, max(0.0, volume))
         backgroundMusicPlayer.volume = 0.7 * chopped
     }

@@ -9,23 +9,24 @@
 import Foundation
 import SpriteKit
 
-class RestartState : GameState {
-    
+class RestartState: GameState {
+
     required init(gameScene: GameScene) {
         super.init(gameScene: gameScene)
     }
-    
+
     override func setUpState() {
-        print("RESTART STATE")
+        //print("RESTART STATE")
         gameScene.prepGame()
         gameScene.gameState = PlayingState(gameScene: gameScene)
     }
-    
+
     override func processTouches(touches: Set<UITouch>) {
         for t in touches {
             let locationTop = t.location(in: gameScene)
-            if let node = gameScene.nodes(at: locationTop)[0] as? SKNode {
-                if node.name == "pause" {
+            let nodeArray = gameScene.nodes(at: locationTop)
+            if nodeArray.count > 0 {
+                if nodeArray[0].name == "pause" {
                     gameScene.gameState = PausedState(gameScene: gameScene!)
                     break
                 }
@@ -35,12 +36,11 @@ class RestartState : GameState {
             let column = gameScene.hexagonMap.tileColumnIndex(fromPosition: location)
             let row = gameScene.hexagonMap.tileRowIndex(fromPosition: location)
             let tile = gameScene.hexagonMap.tileDefinition(atColumn: column, row: row)
-            if let _ = tile?.name {
-                
+            
+            if tile?.name != nil {
                 if let chosenHexagon = gameScene.hexagonManager.fetchHexagon(column: column, row: row) {
                     chosenHexagon.tap()
-                }
-                else {
+                } else {
                     gameScene.takeMissHit()
                 }
             }

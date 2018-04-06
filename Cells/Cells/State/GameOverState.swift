@@ -9,24 +9,25 @@
 import Foundation
 import SpriteKit
 
-class GameOverState : GameState {
-    
+class GameOverState: GameState {
+
     required init(gameScene: GameScene) {
         super.init(gameScene: gameScene)
     }
-    
+
     override func setUpState() {
-        print("GAME OVER STATE")
+        //print("GAME OVER STATE")
         gameScene.gameOver()
     }
-    
+
     override func processTouches(touches: Set<UITouch>) {
-        if gameScene.gameOverNode!.menuButton.contains((touches.first?.location(in: gameScene.pauseGameNode!))!) {
+
+        let node = gameScene.gameOverNode!
+
+        if node.menuButton.contains((touches.first?.location(in: gameScene.pauseGameNode!))!) {
             gameScene.gameState = MenuState(gameScene: gameScene!)
-        }
-        else if gameScene.gameOverNode!.restartButton.contains((touches.first?.location(in: gameScene.pauseGameNode!))!) {
+        } else if node.restartButton.contains((touches.first?.location(in: gameScene.pauseGameNode!))!) {
             gameScene.gameState = RestartState(gameScene: gameScene!)
         }
-        
     }
 }

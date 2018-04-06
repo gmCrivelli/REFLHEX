@@ -11,53 +11,56 @@ import SpriteKit
 import GameplayKit
 import GameKit
 
-protocol GameCenterDelegate {
+protocol GameCenterDelegate: class {
     func submit(score: Int)
     func submit(maxCombo: Int)
     func checkGCLeaderboard()
 }
 
 class GameViewController: UIViewController, GKGameCenterControllerDelegate {
-    
+
     /// MARK: Properties
-    var gameScene : GameScene!
+    var gameScene: GameScene!
     var gcEnabled = Bool() // Check if the user has Game Center enabled
     var gcDefaultLeaderBoard = String() // Check the default leaderboardID
-    
-    let SCORE_LEADERBOARD_ID = "com.score.reflhex"
-    let COMBO_LEADERBOARD_ID = "com.combo.reflhex"
-    let COMBINED_LEADERBOARD_ID = "com.combined.reflhex"
-    
+
+    let SCORELEADERBOARDID = "com.score.reflhex"
+    let COMBOLEADERBOARDID = "com.combo.reflhex"
+    let COMBINEDLEADERBOARDID = "com.combined.reflhex"
+
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(pauseGame(_:)), name:NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
-        
-        if let view = self.view as! SKView? {
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(pauseGame(_:)),
+                                               name: NSNotification.Name.UIApplicationDidEnterBackground,
+                                               object: nil)
+
+        if let view = self.view as? SKView {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
+
                 scene.gameCenterDelegate = self
                 scene.viewControllerDelegate = self
-                
+
                 self.gameScene = scene
-                
+
                 // Present the scene
                 view.presentScene(scene)
             }
-            
+
             view.ignoresSiblingOrder = true
-            
+
             view.showsFPS = false
             view.showsNodeCount = false
         }
-        
+
         authenticateLocalPlayer()
     }
 
@@ -66,34 +69,36 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
             self.gameScene.gameState = PausedState(gameScene: self.gameScene)
         }
     }
-    
+
     // MARK: - AUTHENTICATE LOCAL PLAYER FOR GAMECENTER
     func authenticateLocalPlayer() {
         let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
-        
-        localPlayer.authenticateHandler = {(ViewController, error) -> Void in
-            if((ViewController) != nil) {
+
+        localPlayer.authenticateHandler = {(viewController, error) -> Void in
+            if viewController != nil {
                 // 1. Show login if player is not logged in
-                self.present(ViewController!, animated: true, completion: nil)
-            } else if (localPlayer.isAuthenticated) {
+                self.present(viewController!, animated: true, completion: nil)
+            } else if localPlayer.isAuthenticated {
                 // 2. Player is already authenticated & logged in, load game center
                 self.gcEnabled = true
-                
+
                 // Get the default leaderboard ID
                 localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifer, error) in
-                    if error != nil { print(error)
-                    } else { self.gcDefaultLeaderBoard = leaderboardIdentifer! }
+                    if error != nil {
+                        print(String(describing: error))
+                    } else {
+                        self.gcDefaultLeaderBoard = leaderboardIdentifer!
+                    }
                 })
-                
             } else {
                 // 3. Game center is not enabled on the users device
                 self.gcEnabled = false
                 print("Local player could not be authenticated!")
-                print(error)
+                print(String(describing: error))
             }
         }
     }
-    
+
     override var shouldAutorotate: Bool {
         return true
     }
@@ -114,31 +119,36 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
+
     func displayAbout() {
-        
+
         let randomAdjectives = ["A", "A quick", "A small", "A challenging",
                                 "A lovely", "A frustrating", "An easy",
                                 "A hexagonal", "An original", "An everyday",
                                 "A revolutionary", "Actually a duck disguised as a",
                                 "A crunchy", "A hardcore"]
-        
+
         let rand = arc4random_uniform(UInt32(randomAdjectives.count))
-        
-        let alertController = UIAlertController(title: "About REFLHEX", message:
-            "\n\(randomAdjectives[Int(rand)]) game made by Gustavo Crivelli.\n\nMusic: \"Disco High\", by UltraCat.\n\nThanks for playing!", preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss!", style: UIAlertActionStyle.default,handler: nil))
-        
+
+        var message = "\n\(randomAdjectives[Int(rand)]) game made by Gustavo Crivelli.\n"
+        message += "\nMusic: \"Disco High\", by UltraCat.\n"
+        message += "\nThanks for playing!"
+
+        let alertController = UIAlertController(title: "About REFLHEX",
+                                                message: message,
+                                                preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss!", style: UIAlertActionStyle.default, handler: nil))
+
         self.present(alertController, animated: true, completion: nil)
     }
 }
 
-extension GameViewController : GameCenterDelegate {
+extension GameViewController: GameCenterDelegate {
     func submit(score: Int) {
         // Submit score to GC leaderboard
         guard gcEnabled else { return }
-        
-        let bestScoreInt = GKScore(leaderboardIdentifier: SCORE_LEADERBOARD_ID)
+
+        let bestScoreInt = GKScore(leaderboardIdentifier: SCORELEADERBOARDID)
         bestScoreInt.value = Int64(score)
         GKScore.report([bestScoreInt]) { (error) in
             if error != nil {
@@ -148,12 +158,12 @@ extension GameViewController : GameCenterDelegate {
             }
         }
     }
-    
+
     func submit(maxCombo: Int) {
         // Submit score to GC leaderboard
         guard gcEnabled else { return }
-        
-        let bestComboInt = GKScore(leaderboardIdentifier: COMBO_LEADERBOARD_ID)
+
+        let bestComboInt = GKScore(leaderboardIdentifier: COMBOLEADERBOARDID)
         bestComboInt.value = Int64(maxCombo)
         GKScore.report([bestComboInt]) { (error) in
             if error != nil {
@@ -163,12 +173,12 @@ extension GameViewController : GameCenterDelegate {
             }
         }
     }
-    
+
     func checkGCLeaderboard() {
         let gcVC = GKGameCenterViewController()
         gcVC.gameCenterDelegate = self
         gcVC.viewState = .default
-        //gcVC.leaderboardIdentifier = SCORE_LEADERBOARD_ID
+        //gcVC.leaderboardIdentifier = SCORELEADERBOARDID
         present(gcVC, animated: true, completion: nil)
     }
 }

@@ -17,22 +17,23 @@ enum GameStateType {
     case restart
 }
 
+// Abstract state class, should only be used for inheritance, no direct instantiation.
 class GameState: NSObject {
-    
+
     // Should keep a reference to the game scene
-    weak var gameScene : GameScene!
-    
+    weak var gameScene: GameScene!
+
     required init(gameScene: GameScene) {
         super.init()
         self.gameScene = gameScene
     }
-    
-    ///Setup this state, it makes
-    ///all the actions needed when entering the state
+
+    /// Setup this state. This will be called by an external observer
+    /// whenever the state changes.
     func setUpState() {
         fatalError("Must Overwrite!")
     }
-    
+
     /// Called whenever there is a tap. Decides how to process it.
     func processTouches(touches: Set<UITouch>) {
         fatalError("Must Overwrite!")

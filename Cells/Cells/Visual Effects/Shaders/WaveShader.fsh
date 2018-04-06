@@ -9,7 +9,6 @@
     uv.x += (sin((uv.y + (u_time * 0.07)) * 15.0) * 0.01) +
     (sin((uv.y + (u_time * 0.2)) * 15.0) * 0.008);
 
-    vec4 texColor = texture2D(u_texture,uv);
+    vec4 texColor = texture2D(u_texture, uv);
 
     gl_FragColor = texColor;
-
