@@ -81,7 +81,19 @@ class PlayHexagon: Hexagon {
     public override func tap() {
         if self.state == .standby {
             self.state = .pressed
-            self.gameSceneDelegate.animateMenu()
+
+            self.gameSceneDelegate.mainMenuHUD.run(SKEase.move(easeFunction: .curveTypeElastic,
+                                                               easeType: .easeTypeOut,
+                                                               time: 0.9,
+                                                               from: CGPoint.zero,
+                                                               to: CGPoint(x: 0, y: 300)))
+
+            self.gameSceneDelegate.scoreHUD.run(SKEase.move(easeFunction: .curveTypeElastic,
+                                                            easeType: .easeTypeOut,
+                                                            time: 0.9,
+                                                            from: self.gameSceneDelegate.scoreHUD.position,
+                                                            to: CGPoint.zero))
+
             self.gameSceneDelegate.gameState = RestartState(gameScene: gameSceneDelegate)
         }
     }

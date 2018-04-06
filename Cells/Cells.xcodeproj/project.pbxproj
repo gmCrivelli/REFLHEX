@@ -33,9 +33,6 @@
 		FE8ED9DE2049B6B100AE60A0 /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9DA2049B6B100AE60A0 /* PlayingState.swift */; };
 		FE8ED9DF2049B6B100AE60A0 /* PausedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9DB2049B6B100AE60A0 /* PausedState.swift */; };
 		FE8ED9E02049B6B100AE60A0 /* RestartState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9DC2049B6B100AE60A0 /* RestartState.swift */; };
-		FE9CDF252077F36C0022016A /* GameCameraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9CDF242077F36C0022016A /* GameCameraNode.swift */; };
-		FE9CDF272077F3F30022016A /* GameCameraScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FE9CDF262077F3F30022016A /* GameCameraScene.sks */; };
-		FE9CDF292077F52A0022016A /* GameSceneBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9CDF282077F52A0022016A /* GameSceneBackup.swift */; };
 		FEC3965A20120B8F00A95171 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3965920120B8F00A95171 /* Extensions.swift */; };
 		FEC635CF2018EB9E00737D9E /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC635CE2018EB9E00737D9E /* MusicPlayer.swift */; };
 		FEC635D12018EC7600737D9E /* DiscoHigh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEC635D02018EC7600737D9E /* DiscoHigh.mp3 */; };
@@ -97,9 +94,6 @@
 		FE8ED9DA2049B6B100AE60A0 /* PlayingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
 		FE8ED9DB2049B6B100AE60A0 /* PausedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PausedState.swift; sourceTree = "<group>"; };
 		FE8ED9DC2049B6B100AE60A0 /* RestartState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartState.swift; sourceTree = "<group>"; };
-		FE9CDF242077F36C0022016A /* GameCameraNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCameraNode.swift; sourceTree = "<group>"; };
-		FE9CDF262077F3F30022016A /* GameCameraScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameCameraScene.sks; sourceTree = "<group>"; };
-		FE9CDF282077F52A0022016A /* GameSceneBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneBackup.swift; sourceTree = "<group>"; };
 		FEC3965920120B8F00A95171 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FEC635CE2018EB9E00737D9E /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		FEC635D02018EC7600737D9E /* DiscoHigh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DiscoHigh.mp3; sourceTree = "<group>"; };
@@ -241,7 +235,6 @@
 				FE45D08D20224907005FBF8C /* PausedGameScene.sks */,
 				FE45D09520239912005FBF8C /* GameOverScene.sks */,
 				FEFAF1821FFBB62600BAFA80 /* GameScene.sks */,
-				FE9CDF262077F3F30022016A /* GameCameraScene.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -261,7 +254,6 @@
 				FE45D08B202248B2005FBF8C /* PauseGameNode.swift */,
 				FE45D0972023A0AC005FBF8C /* GameOverNode.swift */,
 				FEFAF1861FFBB62600BAFA80 /* GameScene.swift */,
-				FE9CDF282077F52A0022016A /* GameSceneBackup.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -274,7 +266,6 @@
 				FE64C4BC201B96D50044F435 /* HexagonInstances.swift */,
 				FE6CBF8F200D1EB0006407E1 /* HexagonManager.swift */,
 				FE64C4BA201B77F10044F435 /* ShaderManager.swift */,
-				FE9CDF242077F36C0022016A /* GameCameraNode.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -475,7 +466,6 @@
 				FEFAF18C1FFBB62600BAFA80 /* Main.storyboard in Resources */,
 				FE6CBF92200E4E25006407E1 /* HexagonTimer.fsh in Resources */,
 				FE45D08A202240AC005FBF8C /* Hexa.ttf in Resources */,
-				FE9CDF272077F3F30022016A /* GameCameraScene.sks in Resources */,
 				FE45D09620239912005FBF8C /* GameOverScene.sks in Resources */,
 				FEFAF1831FFBB62600BAFA80 /* GameScene.sks in Resources */,
 				FEFAF1991FFD312100BAFA80 /* CellSet.sks in Resources */,
@@ -547,12 +537,10 @@
 				FEC635CF2018EB9E00737D9E /* MusicPlayer.swift in Sources */,
 				FE6CBF8A2006A25B006407E1 /* Hexagon.swift in Sources */,
 				FE6CBF90200D1EB0006407E1 /* HexagonManager.swift in Sources */,
-				FE9CDF292077F52A0022016A /* GameSceneBackup.swift in Sources */,
 				FE8ED9E02049B6B100AE60A0 /* RestartState.swift in Sources */,
 				FE64C4C4201F6DCA0044F435 /* easing.swift in Sources */,
 				FE8ED9DF2049B6B100AE60A0 /* PausedState.swift in Sources */,
 				FE64C4BB201B77F10044F435 /* ShaderManager.swift in Sources */,
-				FE9CDF252077F36C0022016A /* GameCameraNode.swift in Sources */,
 				FE45D094202388CB005FBF8C /* StatsSaver.swift in Sources */,
 				FE64C4BD201B96D50044F435 /* HexagonInstances.swift in Sources */,
 				FE54B6F420474F8800AB55C6 /* GameStates.swift in Sources */,

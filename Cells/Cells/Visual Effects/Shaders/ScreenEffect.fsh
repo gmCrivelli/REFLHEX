@@ -44,5 +44,4 @@ void main() {
 //    // a parte interna de um circulo, e retornamos a cor, caso não pertença
 //    // retornamos transparente
 //    gl_FragColor = (dist_squared < 25.0) ? original - vec4(0.07, 0.07, 0.07, 0.0): original;
-
 }

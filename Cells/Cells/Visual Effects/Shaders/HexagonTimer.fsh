@@ -22,6 +22,7 @@ void main()
     //Otherwise, just leave the original color
         gl_FragColor = val;
     }
+}
 
     //    // COMBINED SHADER
     //
