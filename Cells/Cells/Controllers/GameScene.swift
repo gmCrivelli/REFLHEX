@@ -205,7 +205,6 @@ class GameScene: SKScene {
     }
     
     func setupMap() {
-        
         self.hexagonMapTiles = [hexagonMap.tileSet.tileGroups.first(where: {$0.name! == "Disabled"})!]
         
         for i in 0 ... self.hexagonMap.numberOfColumns {
