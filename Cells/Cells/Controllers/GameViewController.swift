@@ -44,7 +44,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
+                scene.scaleMode = .aspectFit
 
                 scene.gameCenterDelegate = self
                 scene.viewControllerDelegate = self

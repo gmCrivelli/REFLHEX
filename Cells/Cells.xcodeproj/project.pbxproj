@@ -33,6 +33,8 @@
 		FE8ED9DE2049B6B100AE60A0 /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9DA2049B6B100AE60A0 /* PlayingState.swift */; };
 		FE8ED9DF2049B6B100AE60A0 /* PausedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9DB2049B6B100AE60A0 /* PausedState.swift */; };
 		FE8ED9E02049B6B100AE60A0 /* RestartState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ED9DC2049B6B100AE60A0 /* RestartState.swift */; };
+		FE9CDF2B2078071D0022016A /* GameScene+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9CDF2A2078071D0022016A /* GameScene+Setup.swift */; };
+		FE9CDF2D207807CC0022016A /* GameScene+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9CDF2C207807CC0022016A /* GameScene+Methods.swift */; };
 		FEC3965A20120B8F00A95171 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3965920120B8F00A95171 /* Extensions.swift */; };
 		FEC635CF2018EB9E00737D9E /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC635CE2018EB9E00737D9E /* MusicPlayer.swift */; };
 		FEC635D12018EC7600737D9E /* DiscoHigh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEC635D02018EC7600737D9E /* DiscoHigh.mp3 */; };
@@ -94,6 +96,8 @@
 		FE8ED9DA2049B6B100AE60A0 /* PlayingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
 		FE8ED9DB2049B6B100AE60A0 /* PausedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PausedState.swift; sourceTree = "<group>"; };
 		FE8ED9DC2049B6B100AE60A0 /* RestartState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartState.swift; sourceTree = "<group>"; };
+		FE9CDF2A2078071D0022016A /* GameScene+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+Setup.swift"; sourceTree = "<group>"; };
+		FE9CDF2C207807CC0022016A /* GameScene+Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+Methods.swift"; sourceTree = "<group>"; };
 		FEC3965920120B8F00A95171 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FEC635CE2018EB9E00737D9E /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		FEC635D02018EC7600737D9E /* DiscoHigh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DiscoHigh.mp3; sourceTree = "<group>"; };
@@ -254,6 +258,8 @@
 				FE45D08B202248B2005FBF8C /* PauseGameNode.swift */,
 				FE45D0972023A0AC005FBF8C /* GameOverNode.swift */,
 				FEFAF1861FFBB62600BAFA80 /* GameScene.swift */,
+				FE9CDF2A2078071D0022016A /* GameScene+Setup.swift */,
+				FE9CDF2C207807CC0022016A /* GameScene+Methods.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -547,11 +553,13 @@
 				FE8ED9DE2049B6B100AE60A0 /* PlayingState.swift in Sources */,
 				FEFAF1811FFBB62600BAFA80 /* AppDelegate.swift in Sources */,
 				FE64C4C3201F6DCA0044F435 /* EasingDeclarations.swift in Sources */,
+				FE9CDF2B2078071D0022016A /* GameScene+Setup.swift in Sources */,
 				FE45D08C202248B2005FBF8C /* PauseGameNode.swift in Sources */,
 				FEC3965A20120B8F00A95171 /* Extensions.swift in Sources */,
 				FE8ED9D82049B67300AE60A0 /* MenuState.swift in Sources */,
 				FE64C4C5201F6DCA0044F435 /* SKEase.swift in Sources */,
 				FE45D0982023A0AC005FBF8C /* GameOverNode.swift in Sources */,
+				FE9CDF2D207807CC0022016A /* GameScene+Methods.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
