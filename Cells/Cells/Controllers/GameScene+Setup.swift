@@ -153,11 +153,11 @@ extension GameScene {
     
     func setupEffects() {
         
-        let em = SKEmitterNode(fileNamed: "bgParticles")!
+        let emmit = SKEmitterNode(fileNamed: "bgParticles")!
         self.emmiterHolderNode = SKNode()
-        self.emmiterHolderNode.addChild(em)
+        self.emmiterHolderNode.addChild(emmit)
         self.cameraNode.addChild(emmiterHolderNode)
-        self.emmiter = em
+        self.emmiter = emmit
         self.emmiter?.position = CGPoint(x: -emmiterRadius, y: 0)
         self.emmiter?.zPosition = -20
         self.emmiterAngle = 0.0
@@ -168,14 +168,14 @@ extension GameScene {
         
         self.hexagonMapTiles = [hexagonMap.tileSet.tileGroups.first(where: {$0.name! == "Disabled"})!]
         
-        for i in 0 ... self.hexagonMap.numberOfColumns {
-            for j in 0 ... self.hexagonMap.numberOfRows {
-                self.hexagonMap.setTileGroup(nil, forColumn: i, row: j)
+        for xIndex in 0 ... self.hexagonMap.numberOfColumns {
+            for yIndex in 0 ... self.hexagonMap.numberOfRows {
+                self.hexagonMap.setTileGroup(nil, forColumn: xIndex, row: yIndex)
             }
         }
         
-        for (x, y) in hexagonManager.getAllCenterHexagons() {
-            self.hexagonMap.setTileGroup(self.hexagonMapTiles[0], forColumn: x, row: y)
+        for (xIndex, yIndex) in hexagonManager.getAllCenterHexagons() {
+            self.hexagonMap.setTileGroup(self.hexagonMapTiles[0], forColumn: xIndex, row: yIndex)
         }
     }
 }

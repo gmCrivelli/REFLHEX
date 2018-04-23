@@ -21,8 +21,8 @@ class PlayingState: GameState {
     }
 
     override func processTouches(touches: Set<UITouch>) {
-        for t in touches {
-            let locationTop = t.location(in: gameScene)
+        for touch in touches {
+            let locationTop = touch.location(in: gameScene)
             let nodes = gameScene.nodes(at: locationTop)
             if nodes.count > 0 {
                 let node = nodes[0]
@@ -31,7 +31,7 @@ class PlayingState: GameState {
                     break
                 }
 
-                let location = t.location(in: gameScene.hexagonMap)
+                let location = touch.location(in: gameScene.hexagonMap)
                 let column = gameScene.hexagonMap.tileColumnIndex(fromPosition: location)
                 let row = gameScene.hexagonMap.tileRowIndex(fromPosition: location)
                 let tile = gameScene.hexagonMap.tileDefinition(atColumn: column, row: row)

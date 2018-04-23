@@ -21,8 +21,8 @@ class MenuState: GameState {
     }
 
     override func processTouches(touches: Set<UITouch>) {
-        for t in touches {
-            let location = t.location(in: gameScene)
+        for touch in touches {
+            let location = touch.location(in: gameScene)
             if let hex = gameScene.nodes(at: location)[0] as? Hexagon {
                 hex.tap()
             }

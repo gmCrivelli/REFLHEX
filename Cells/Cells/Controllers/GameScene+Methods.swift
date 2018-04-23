@@ -114,10 +114,10 @@ extension GameScene {
         
         let width = self.hexagonMap.tileSize.width
         let center = CGPoint(x: self.cameraNode.position.x, y: self.hexagonMap.position.y)
-        let (i, j) = index - self.hexagonManager.centerOffset
-        let middle = CGFloat(i) - CGFloat(abs(j % 2))/2
+        let (xIndex, yIndex) = index - self.hexagonManager.centerOffset
+        let middle = CGFloat(xIndex) - CGFloat(abs(yIndex % 2))/2
         let xPosition = center.x + middle * width
-        let yPosition = center.y + CGFloat(j) * width * sqrt(3)/2
+        let yPosition = center.y + CGFloat(xIndex) * width * sqrt(3)/2
         
         return  CGPoint(x: xPosition, y: yPosition)
     }

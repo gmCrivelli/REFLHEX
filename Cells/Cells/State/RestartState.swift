@@ -22,8 +22,8 @@ class RestartState: GameState {
     }
 
     override func processTouches(touches: Set<UITouch>) {
-        for t in touches {
-            let locationTop = t.location(in: gameScene)
+        for touch in touches {
+            let locationTop = touch.location(in: gameScene)
             let nodeArray = gameScene.nodes(at: locationTop)
             if nodeArray.count > 0 {
                 if nodeArray[0].name == "pause" {
@@ -32,7 +32,7 @@ class RestartState: GameState {
                 }
             }
             
-            let location = t.location(in: gameScene.hexagonMap)
+            let location = touch.location(in: gameScene.hexagonMap)
             let column = gameScene.hexagonMap.tileColumnIndex(fromPosition: location)
             let row = gameScene.hexagonMap.tileRowIndex(fromPosition: location)
             let tile = gameScene.hexagonMap.tileDefinition(atColumn: column, row: row)

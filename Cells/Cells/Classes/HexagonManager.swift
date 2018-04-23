@@ -92,10 +92,10 @@ class HexagonManager {
 
         self.hexagonMatrix = [[Hexagon?]]()
 
-        for x in 0...matrixColumns {
+        for index in 0...matrixColumns {
             hexagonMatrix.append([])
             for _ in 0...matrixRows {
-                hexagonMatrix[x].append(nil)
+                hexagonMatrix[index].append(nil)
             }
         }
 
@@ -192,10 +192,10 @@ class HexagonManager {
                 slave.masterHexagon = master
 
                 // Calculates M_Index for each Hexagon and store a reference to each in the matrix
-                let (x, y) = masterIndex + centerOffset
-                let (w, z) = slaveIndex + centerOffset
-                hexagonMatrix[x][y] = master
-                hexagonMatrix[w][z] = slave
+                let (xPos, yPos) = masterIndex + centerOffset
+                let (wPos, zPos) = slaveIndex + centerOffset
+                hexagonMatrix[xPos][yPos] = master
+                hexagonMatrix[wPos][zPos] = slave
 
                 // Removes the taken positions from the availability array
                 self.availableHexagons.remove(at: rand)
@@ -227,8 +227,8 @@ class HexagonManager {
             hexArray[0].matrixLocation = hexIndex + centerOffset
 
             // Store the Hexagon in the matrix
-            let (x, y) = hexArray[0].matrixLocation
-            hexagonMatrix[x][y] = hexArray[0]
+            let (xPos, yPos) = hexArray[0].matrixLocation
+            hexagonMatrix[xPos][yPos] = hexArray[0]
         }
 
         // Return the created Hexagon(s)
@@ -237,11 +237,11 @@ class HexagonManager {
 
     // This returns all available neighbors for a given H_Index, in the form
     // of the tuple (direction, H_Index).
-    func getAllFreeNeighbors(for index: (Int, Int)) -> [(NeighboringTiles, (Int, Int))] {
+    func getAllFreeNeighbors(for hexIndex: (Int, Int)) -> [(NeighboringTiles, (Int, Int))] {
 
         // Depending on the Y position of the Hexagon, going up/down will move to the left or to the right.
         // This tilt can be calculated with a simple mod operation.
-        let tilt = ((index.1 + 2) % 2) * -1
+        let tilt = ((hexIndex.1 + 2) % 2) * -1
 
         // These are the directions and locations that must be checked. Any free spots will be put in an array.
         let neighboringIDs: [NeighboringTiles] = [.left, .right, .topLeft, .topRight, .bottomLeft, .bottomRight]
@@ -249,10 +249,10 @@ class HexagonManager {
         var availableNeighbors = [(NeighboringTiles, (Int, Int))]()
 
         // Puts free neighbor tuples into an array.
-        for i in 0...5 {
-            let xy = index + neighboringPositions[i]
-            if self.availableHexagons.contains(where: {$0 == xy}) {
-                availableNeighbors.append((neighboringIDs[i], xy))
+        for xIndex in 0...5 {
+            let pos = hexIndex + neighboringPositions[xIndex]
+            if self.availableHexagons.contains(where: {$0 == pos}) {
+                availableNeighbors.append((neighboringIDs[xIndex], pos))
             }
         }
 
@@ -261,10 +261,10 @@ class HexagonManager {
     }
 
     // Similar to the above function, but returns only one chosen neighbor.
-    func getOneFreeNeighbor(for index: (Int, Int)) -> (NeighboringTiles, (Int, Int))? {
+    func getOneFreeNeighbor(for hexIndex: (Int, Int)) -> (NeighboringTiles, (Int, Int))? {
 
         // Get all available neighbors of the given H_Index
-        let availableNeighbors = getAllFreeNeighbors(for: index)
+        let availableNeighbors = getAllFreeNeighbors(for: hexIndex)
 
         // If there's any free neighbors, pick a random one. Otherwise, return nil
         let neighborCount = availableNeighbors.count
@@ -287,9 +287,9 @@ class HexagonManager {
 
     // Updates all active Hexagons.
     func update(timeElapsed deltaTime: TimeInterval) {
-        for i in 0...matrixColumns {
-            for j in 0...matrixRows {
-                if let hex = hexagonMatrix[i][j] {
+        for xIndex in 0...matrixColumns {
+            for yIndex in 0...matrixRows {
+                if let hex = hexagonMatrix[xIndex][yIndex] {
                     hex.update(timeElapsed: deltaTime)
                 }
             }
